@@ -37,16 +37,26 @@
             };
             $(document).on(
                 'fbload',  
-                function(){                  
+                function(){ 
+                    var uid = 0;                 
                     FB.getLoginStatus(function(res){
                     if( res.status == "connected" ){
                     FB.api('/me', function(fbUser) {
                         console.log("Hello " + fbUser.name + ".");   
                         console.log(fbUser.id);   
-                                                                                   
+                        uid = fbUser.id;                                                         
                     });
                     }
-                });                      
+                    }); 
+                    FB.api(
+                    "/" + uid + "/likes",
+                    function (response) {
+                        if (response && !response.error) {
+                        /* handle the result */
+                        console.log(response.data);
+                        }
+                    }
+                    );
             });    
     </script>
 </body>
