@@ -41,7 +41,9 @@
                     FB.getLoginStatus(function(res){
                     if( res.status == "connected" ){
                     FB.api('/me', function(fbUser) {
-                        console.log("Hello " + fbUser.name + ".");                                                                     
+                        console.log("Hello " + fbUser.name + ".");   
+                        console.log(fbUser.id);   
+                                                                                   
                     });
                     }
                 });                      
