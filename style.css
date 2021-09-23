@@ -1,0 +1,13 @@
+body {
+    width:520px;
+    margin:0; padding:0; border:0;
+    font-family: verdana;
+    background:url(repeat.png) repeat;
+    margin-bottom:10px;
+    }
+    p, h1 {width:450px; margin-left:50px; color:#FFF;}
+    p {font-size:11px;}
+    
+    #container_notlike, #container_like, #login {
+        display:none
+    }
