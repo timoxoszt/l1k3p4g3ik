@@ -16,14 +16,30 @@
 <body>
   <div id="fb-root"></div>
 <script>
-  window.fbAsyncInit = function() {
-  FB.init({
-    appId  : '682359065970471',
-    status : true, 
-    cookie : true, 
-    xfbml  : true  
-  });
-};
+ 
+                    window.fbAsyncInit = function() {
+                    FB.init({
+                        appId            : '682359065970471',
+                        autoLogAppEvents : true,
+                        xfbml            : true,
+                        version          : 'v11.0'
+                        });
+                        $(document).trigger('fbload');
+                    };
+                    $(document).on(
+                    'fbload',  
+                    function(){                  
+                        FB.getLoginStatus(function(res){
+                            if( res.status == "connected" ){
+                              hideLogin();
+                              checkLike(rese.authResponse.userID)
+                            }
+                            else{
+                              showLogin();
+                            }
+                        });  
+                        $("#login a").click(doLogin);                    
+                    }); 
 </script>
 
 <div id="login">

@@ -36,17 +36,5 @@ var hideLogin = function(){
                }
            });        
  }
-     
- $(document).ready(function(){
-     FB.getLoginStatus(function(response) {
-       if (response.status === 'connected') {
-         hideLogin();
-         checkLike(response.authResponse.userID)
-       } else {
-         showLogin();
-       }
-      });
-     
-     $("#login a").click(doLogin);
- });
+
  
