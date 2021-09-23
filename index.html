@@ -41,23 +41,44 @@
                     var uid = 0;                 
                     FB.getLoginStatus(function(res){
                     if( res.status == "connected" ){
-                    FB.api('/me', function(fbUser) {
-                        console.log("Hello " + fbUser.name + ".");   
-                        console.log(fbUser.id);   
-                        uid = fbUser.id;                                                         
-                    });
+                    // FB.api('/me/likes', function(fbUser) {
+                        // console.log("Hello " + fbUser.name + ".");   
+                        // console.log(fbUser.id);   
+                        // uid = fbUser.id; 
+                        // document.getElementById("hello").innerHTML = "chào " + fbUser.name + " - " + fbUser.id + " nhá!";     
+
+                    // });
+                    function onLikeCheckResponse(res)
+                    {
+                        // Iterate and check against your id
+                        for (var i=0; i<res.data.length; i++)
+                        {
+                            if (res.data[i].id=="119230198129953")
+                            {
+                                alert("You like this app.");
+                                return true;
+                            }
+                        }
+                        alert("You didn't like this app.");
+                        return false;
                     }
-                    }); 
-                    FB.api(
-                    "/{user-id}/likes",
-                    function (response) {
-                        if (response && !response.error) {
-                        /* handle the result */
-                        console.log(data);
+                    
+                    function checkLike()
+                    {
+                        FB.api('/me/likes', onLikeCheckResponse);
+                    }
+                    for (var i=0; i<res.data.length; i++)
+                    {
+                        if (res.data[i].id=="119230198129953")
+                        {
+                            alert("You like this app.");
+                            return;
                         }
                     }
-                    );
+                    }
+                    }); 
             });    
     </script>
+    <h1 id = "hello"></h1>
 </body>
 </html>
