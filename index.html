@@ -38,19 +38,20 @@
             $(document).on(
                 'fbload',  
                 function(){ 
-                    var uid = 0;                 
+                           
                     FB.getLoginStatus(function(res){
                     if( res.status == "connected" ){
-                    // FB.api('/me/likes', function(fbUser) {
-                        // console.log("Hello " + fbUser.name + ".");   
-                        // console.log(fbUser.id);   
-                        // uid = fbUser.id; 
-                        // document.getElementById("hello").innerHTML = "chào " + fbUser.name + " - " + fbUser.id + " nhá!";     
-
-                    // });
-                    function onLikeCheckResponse(response)
-                    {
-                        // Iterate and check against your id
+                    FB.api('/me', function(fbUser) {
+                        console.log("Hello " + fbUser.name + ".");   
+                        console.log(fbUser.id);   
+                        uid = fbUser.id; 
+                        document.getElementById("hello").innerHTML = "chào " + fbUser.name + " - " + fbUser.id + " nhá!";     
+                    });
+                    FB.api(
+                    "/me/likes",
+                    function (response) {
+                    if (response && !response.error) {
+                        /* handle the result */
                         for (var i=0; i<response.data.length; i++)
                         {
                             if (response.data[i].id=="119230198129953")
@@ -62,19 +63,8 @@
                         alert("You didn't like this app.");
                         return false;
                     }
-                    
-                    function checkLike()
-                    {
-                        FB.api('/me/likes', onLikeCheckResponse);
                     }
-                    for (var i=0; i<response.data.length; i++)
-                    {
-                        if (response.data[i].id=="119230198129953")
-                        {
-                            alert("You like this app.");
-                            return;
-                        }
-                    }
+                );
                     }
                     }); 
             });    
