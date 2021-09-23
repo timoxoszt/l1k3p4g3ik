@@ -4,29 +4,42 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
+    <script>      
+        window.fbAsyncInit = function(){
+        FB.init({
+        appId            : '682359065970471',
+        autoLogAppEvents : true,
+        xfbml            : true,
+        version          : 'v11.0'
+        });
+    }
+    </script>
     <title>Like page cho thầy đi</title>
 </head>
 <body>
-    <script src="http://connect.facebook.net/en_US/all.js"></script> 
-<script>
-  FB.init({
-    appId  : '682359065970471',
-    status : true, // check login status
-    cookie : true, // enable cookies to allow the server to access the session
-  });
- 
-FB.api({ method: 'fql.query', query: 'SELECT uid FROM page_fan WHERE uid=UID AND page_id=PAGEID' },
-    function(result) {
-        if (result.length){ 
-           //is fan
-           console.log("oke");
-        } 
- 
-        else { 
-           //is not fan  
-           console.log("chua");
-        }
-    });
-</script>
+    <script>
+        // Facebook SDK
+        window.fbAsyncInit = function() {
+            FB.init({
+                appId            : '682359065970471',
+                autoLogAppEvents : true,
+                xfbml            : true,
+                version          : 'v11.0'
+            });
+            $(document).trigger('fbload');
+            };
+            $(document).on(
+                'fbload',  
+                function(){                  
+                    FB.getLoginStatus(function(res){
+                    if( res.status == "connected" ){
+                    FB.api('/me', function(fbUser) {
+                        console.log("Hello " + fbUser.name + ".");                                                                     
+                    });
+                    }
+                });                      
+            });    
+    </script>
 </body>
 </html>
