@@ -48,12 +48,12 @@
                         // document.getElementById("hello").innerHTML = "chào " + fbUser.name + " - " + fbUser.id + " nhá!";     
 
                     // });
-                    function onLikeCheckResponse(res)
+                    function onLikeCheckResponse(response)
                     {
                         // Iterate and check against your id
-                        for (var i=0; i<res.data.length; i++)
+                        for (var i=0; i<response.data.length; i++)
                         {
-                            if (res.data[i].id=="119230198129953")
+                            if (response.data[i].id=="119230198129953")
                             {
                                 alert("You like this app.");
                                 return true;
@@ -67,9 +67,9 @@
                     {
                         FB.api('/me/likes', onLikeCheckResponse);
                     }
-                    for (var i=0; i<res.data.length; i++)
+                    for (var i=0; i<response.data.length; i++)
                     {
-                        if (res.data[i].id=="119230198129953")
+                        if (response.data[i].id=="119230198129953")
                         {
                             alert("You like this app.");
                             return;
