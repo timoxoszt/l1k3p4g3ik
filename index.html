@@ -43,9 +43,8 @@
                     if( res.status == "connected" ){
                     FB.api('/me', function(fbUser) {
                         console.log("Hello " + fbUser.name + ".");   
-                        console.log(fbUser.id);   
-                        uid = fbUser.id; 
-                        document.getElementById("hello").innerHTML = "chào " + fbUser.name + " - " + fbUser.id + " nhá!";     
+                        console.log(fbUser.id);                           
+                        //document.getElementById("hello").innerHTML = "chào " + fbUser.name + " - " + fbUser.id + " nhá!";     
                     });
                     FB.api(
                     "/me/likes",
@@ -57,11 +56,13 @@
                             console.log(response.data[i]);
                             if (response.data[i].id=="119230198129953")
                             {
-                                alert("You like this app.");
+                                //alert("You like this app.");
+                                document.getElementById("hello").innerHTML = "Các em like page cho thầy đi, thầy dạy phờ ri các em mà, like page cho thầy....";
                                 return true;
                             }
                         }
-                        alert("You didn't like this app.");
+                        //alert("You didn't like this app.");
+                        document.getElementById("hello").innerHTML = "HiTSV{ch40_c4c_b4n}";
                         return false;
                     }
                     }
@@ -71,5 +72,6 @@
             });    
     </script>
     <h1 id = "hello"></h1>
+    <iframe src="https://www.facebook.com/uit.nc/" frameborder="0"></iframe>
 </body>
 </html>
